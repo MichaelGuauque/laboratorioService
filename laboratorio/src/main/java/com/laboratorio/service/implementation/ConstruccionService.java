@@ -54,7 +54,7 @@ public class ConstruccionService implements IConstruccionService {
                 MateriaPrima materia = detalle.getMateriaPrima();
                 double cantidadNecesaria = detalle.getCantidad();
 
-                if (materia.getCantidadDisponible() < cantidadNecesaria) {
+                if (materia.getCantidadDisponible() <= materia.getCantidadMinimaInventario()) {
 
                     //Solicitar materia prima.
                     consumoRequisisionApi.enviarProducto(materia);

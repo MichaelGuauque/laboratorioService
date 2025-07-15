@@ -57,6 +57,7 @@ public class MateriaPrimaService implements IMateriaPrimaService {
                 .referencia(materiaPrimaDTO.referencia())
                 .unidad(materiaPrimaDTO.unidad())
                 .cantidadDisponible(materiaPrimaDTO.cantidadDisponible())
+                .cantidadMinimaInventario((double)200)
                 .build();
     }
 }

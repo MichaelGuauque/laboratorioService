@@ -21,6 +21,7 @@ public class MateriaPrima {
     private String referencia;
     private String unidad;
     private Double cantidadDisponible;
+    private Double cantidadMinimaInventario;
 
     public void agregarCantidadDisponible(Double cantidad) {
         this.cantidadDisponible += cantidad;
