@@ -20,4 +20,8 @@ public class MateriaPrima {
     private String nombre;
     private String unidad;
     private Double cantidadDisponible;
+
+    public void agregarCantidadDisponible(Double cantidad) {
+        this.cantidadDisponible += cantidad;
+    }
 }

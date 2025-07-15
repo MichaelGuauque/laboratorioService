@@ -37,7 +37,9 @@ public class MateriaPrimaService implements IMateriaPrimaService {
     public void update(MateriaPrima materiaPrima) {
         Optional<MateriaPrima> findById = materiaPrimaRepository.findById(materiaPrima.getId());
         if (findById.isPresent()) {
-            materiaPrimaRepository.save(materiaPrima);
+            MateriaPrima m = findById.get();
+            m.agregarCantidadDisponible(materiaPrima.getCantidadDisponible());
+            materiaPrimaRepository.save(m);
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Material no encontrado");
         }
