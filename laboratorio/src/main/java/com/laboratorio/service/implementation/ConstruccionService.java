@@ -26,6 +26,8 @@ public class ConstruccionService implements IConstruccionService {
     private ProductoRepository productoRepository;
     @Autowired
     private PlanoDetalleMaterialRepository planoDetalleMaterialRepository;
+    @Autowired
+    ConsumoRequisisionApi consumoRequisisionApi;
 
 
     @Override
@@ -55,6 +57,7 @@ public class ConstruccionService implements IConstruccionService {
                 if (materia.getCantidadDisponible() < cantidadNecesaria) {
 
                     //Solicitar materia prima.
+                    consumoRequisisionApi.enviarProducto(materia);
                     throw new IllegalStateException("No hay suficiente " + materia.getNombre() + ". Se necesita " + cantidadNecesaria + " " + materia.getUnidad());
                 }
 
