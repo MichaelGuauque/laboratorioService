@@ -2,7 +2,9 @@ package com.laboratorio.controller;
 
 
 import com.laboratorio.dto.ConstruirDTO;
+import com.laboratorio.dto.DespachoProductoDTO;
 import com.laboratorio.persistence.model.Producto;
+import com.laboratorio.service.implementation.ConsumoApi;
 import com.laboratorio.service.interfaces.IConstruccionService;
 import com.laboratorio.service.interfaces.IProductoService;
 import org.slf4j.Logger;
@@ -23,6 +25,8 @@ public class ProductoController {
     private IProductoService productoService;
     @Autowired
     private IConstruccionService construccionService;
+    @Autowired
+    private ConsumoApi consumoApi;
     private final Logger LOGGER = LoggerFactory.getLogger(ProductoController.class);
 
 
@@ -32,9 +36,11 @@ public class ProductoController {
     }
 
     @PostMapping("/fabricar")
-    public ResponseEntity<Producto> fabricar(@RequestBody ConstruirDTO construirDTO, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<Producto> fabricar(@RequestBody ConstruirDTO construirDTO) {
         LOGGER.info("Iniciando fabricar producto {}", construirDTO);
         construccionService.construir(construirDTO);
+        DespachoProductoDTO despacho = new DespachoProductoDTO("DESPACHO-LAB", construirDTO.codigoSerie(), construirDTO.cantidad());
+        consumoApi.enviarDespacho(despacho);
         return ResponseEntity.ok().build();
     }
 }
