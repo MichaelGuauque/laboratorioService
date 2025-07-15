@@ -1,7 +1,8 @@
 package com.laboratorio.dto;
 
 public record ConstruirDTO(
-        long planoId,
-        String codigoSerie
+//        long planoId,
+        String codigoSerie,
+        Integer cantidad
 ) {
 }

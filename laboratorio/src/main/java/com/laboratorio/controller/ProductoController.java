@@ -34,8 +34,7 @@ public class ProductoController {
     @PostMapping("/fabricar")
     public ResponseEntity<Producto> fabricar(@RequestBody ConstruirDTO construirDTO, UriComponentsBuilder uriComponentsBuilder) {
         LOGGER.info("Iniciando fabricar producto {}", construirDTO);
-        Producto prod = construccionService.construir(construirDTO);
-        URI url = uriComponentsBuilder.path("/lab/productos/{id}").buildAndExpand(prod.getId()).toUri();
-        return ResponseEntity.created(url).body(prod);
+        construccionService.construir(construirDTO);
+        return ResponseEntity.ok().build();
     }
 }

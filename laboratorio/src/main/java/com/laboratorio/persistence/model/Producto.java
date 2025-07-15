@@ -18,6 +18,7 @@ public class Producto {
     private Long id;
     private String codigoSerie;
     private LocalDate fechaFabricacion;
+    private Estado estado;
 
     @ManyToOne
     private Plano planoUsado;

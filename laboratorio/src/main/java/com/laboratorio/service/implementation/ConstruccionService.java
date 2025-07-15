@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,34 +30,14 @@ public class ConstruccionService implements IConstruccionService {
 
     @Override
     @Transactional
-    public Producto construir(ConstruirDTO construirDTO) {
+    public void construir(ConstruirDTO construirDTO) {
+        List<Producto> cuchillas = new ArrayList<>();
+        Producto producto = productoRepository.findByCodigoSerie(construirDTO.codigoSerie()).get();
         // Obtener plano
-        Plano plano = planoRepo.findById(construirDTO.planoId())
-                .orElseThrow(() -> new EntityNotFoundException("Plano no encontrado con ID: " + construirDTO.planoId()));
+        Plano plano = producto.getPlanoUsado();
 
         // Obtener los materiales requeridos por ese plano
         List<PlanoDetalleMaterial> materialesRequeridos = planoDetalleMaterialRepository.findByPlano(plano);
-
-        // Verificar y descontar materiales
-        for (PlanoDetalleMaterial detalle : materialesRequeridos) {
-            MateriaPrima materia = detalle.getMateriaPrima();
-            double cantidadNecesaria = detalle.getCantidad();
-
-            if (materia.getCantidadDisponible() < cantidadNecesaria) {
-                throw new IllegalStateException("No hay suficiente " + materia.getNombre() + ". Se necesita " + cantidadNecesaria + " " + materia.getUnidad());
-            }
-
-            materia.setCantidadDisponible(materia.getCantidadDisponible() - cantidadNecesaria);
-            materiaRepo.save(materia);
-        }
-
-        // Crear nueva cuchilla
-        Producto nuevaCuchilla = Producto.builder()
-                .codigoSerie(construirDTO.codigoSerie())
-                .fechaFabricacion(LocalDate.now())
-                .planoUsado(plano)
-                .build();
-        productoRepository.save(nuevaCuchilla);
 
         // Actualizar inventario de cuchillas
         InventarioProducto inventario = inventarioRepo.findByPlano(plano)
@@ -65,9 +46,34 @@ public class ConstruccionService implements IConstruccionService {
                         .cantidadDisponible(0)
                         .build());
 
-        inventario.setCantidadDisponible(inventario.getCantidadDisponible() + 1);
-        inventarioRepo.save(inventario);
+        for (int i = 0; i <= construirDTO.cantidad() ; i++){
+            // Verificar y descontar materiales
+            for (PlanoDetalleMaterial detalle : materialesRequeridos) {
+                MateriaPrima materia = detalle.getMateriaPrima();
+                double cantidadNecesaria = detalle.getCantidad();
 
-        return nuevaCuchilla;
+                if (materia.getCantidadDisponible() < cantidadNecesaria) {
+
+                    //Solicitar materia prima.
+                    throw new IllegalStateException("No hay suficiente " + materia.getNombre() + ". Se necesita " + cantidadNecesaria + " " + materia.getUnidad());
+                }
+
+                materia.setCantidadDisponible(materia.getCantidadDisponible() - cantidadNecesaria);
+                materiaRepo.save(materia);
+            }
+
+            // Crear nueva cuchilla
+            Producto nuevaCuchilla = Producto.builder()
+                    .codigoSerie(construirDTO.codigoSerie())
+                    .fechaFabricacion(LocalDate.now())
+                    .planoUsado(plano)
+                    .build();
+            cuchillas.add(producto);
+            inventario.setCantidadDisponible(inventario.getCantidadDisponible() + 1);
+        }
+
+
+        inventarioRepo.save(inventario);
+        productoRepository.saveAll(cuchillas);
     }
 }
