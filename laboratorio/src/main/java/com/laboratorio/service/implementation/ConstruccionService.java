@@ -58,7 +58,8 @@ public class ConstruccionService implements IConstruccionService {
 
                     //Solicitar materia prima.
                     consumoRequisisionApi.enviarProducto(materia);
-                    throw new IllegalStateException("No hay suficiente " + materia.getNombre() + ". Se necesita " + cantidadNecesaria + " " + materia.getUnidad());
+//                    throw new IllegalStateException("No hay suficiente " + materia.getNombre() + ". Se necesita " + cantidadNecesaria + " " + materia.getUnidad());
+                    return;
                 }
 
                 materia.setCantidadDisponible(materia.getCantidadDisponible() - cantidadNecesaria);
