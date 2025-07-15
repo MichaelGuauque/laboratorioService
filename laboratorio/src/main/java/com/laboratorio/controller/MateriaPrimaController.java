@@ -1,5 +1,6 @@
 package com.laboratorio.controller;
 
+import com.laboratorio.dto.MateriaDTO;
 import com.laboratorio.dto.MateriaPrimaDTO;
 import com.laboratorio.persistence.model.MateriaPrima;
 import com.laboratorio.service.interfaces.IMateriaPrimaService;
@@ -29,8 +30,8 @@ public class MateriaPrimaController {
         return ResponseEntity.ok(m);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity  update(@RequestBody MateriaPrima m) {
+    @PutMapping("/ingresar-inventario")
+    public ResponseEntity  update(@RequestBody MateriaDTO m) {
         materiaPrimaService.update(m);
         return ResponseEntity.ok().build();
     }

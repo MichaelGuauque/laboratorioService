@@ -1,5 +1,6 @@
 package com.laboratorio.service.implementation;
 
+import com.laboratorio.dto.MateriaDTO;
 import com.laboratorio.dto.MateriaPrimaDTO;
 import com.laboratorio.persistence.model.MateriaPrima;
 import com.laboratorio.persistence.repository.MateriaPrimaRepository;
@@ -34,20 +35,26 @@ public class MateriaPrimaService implements IMateriaPrimaService {
     }
 
     @Override
-    public void update(MateriaPrima materiaPrima) {
-        Optional<MateriaPrima> findById = materiaPrimaRepository.findById(materiaPrima.getId());
+    public void update(MateriaDTO materiaPrima) {
+        Optional<MateriaPrima> findById = findByReferencia(materiaPrima.referencia());
         if (findById.isPresent()) {
             MateriaPrima m = findById.get();
-            m.agregarCantidadDisponible(materiaPrima.getCantidadDisponible());
+            m.agregarCantidadDisponible(materiaPrima.cantidad());
             materiaPrimaRepository.save(m);
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Material no encontrado");
         }
     }
 
+    @Override
+    public Optional<MateriaPrima> findByReferencia(String referencia) {
+        return materiaPrimaRepository.findByReferencia(referencia);
+    }
+
     public MateriaPrima cambiarMateriaPrimaDTO(MateriaPrimaDTO materiaPrimaDTO) {
         return MateriaPrima.builder()
                 .nombre(materiaPrimaDTO.nombre())
+                .referencia(materiaPrimaDTO.referencia())
                 .unidad(materiaPrimaDTO.unidad())
                 .cantidadDisponible(materiaPrimaDTO.cantidadDisponible())
                 .build();

@@ -18,6 +18,7 @@ public class MateriaPrima {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private String referencia;
     private String unidad;
     private Double cantidadDisponible;
 
