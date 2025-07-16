@@ -1,11 +1,16 @@
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\configuration\AppConfig.java
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\configuration\CorsConfig.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\controller\InventarioProductoController.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\controller\MateriaPrimaController.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\controller\PlanoController.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\controller\ProductoController.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\dto\ConstruirDTO.java
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\dto\DespachoProductoDTO.java
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\dto\MateriaDTO.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\dto\MateriaPrimaDTO.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\dto\PlanoDTO.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\LaboratorioApplication.java
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persistence\model\Estado.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persistence\model\InventarioProducto.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persistence\model\MateriaPrima.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persistence\model\Plano.java
@@ -17,6 +22,8 @@ C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persis
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persistence\repository\PlanoRepository.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\persistence\repository\ProductoRepository.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\service\implementation\ConstruccionService.java
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\service\implementation\ConsumoApi.java
+C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\service\implementation\ConsumoRequisisionApi.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\service\implementation\InventarioProductoService.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\service\implementation\MateriaPrimaService.java
 C:\Users\usuario\Desktop\deploy\laboratorio\src\main\java\com\laboratorio\service\implementation\PlanoService.java
