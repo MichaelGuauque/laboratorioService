@@ -6,6 +6,7 @@ com\laboratorio\dto\ConstruirDTO.class
 com\laboratorio\persistence\model\MateriaPrima$MateriaPrimaBuilder.class
 com\laboratorio\service\implementation\MateriaPrimaService.class
 com\laboratorio\service\implementation\PlanoService.class
+com\laboratorio\configuration\CorsConfig.class
 com\laboratorio\controller\ProductoController.class
 com\laboratorio\persistence\model\MateriaPrima.class
 com\laboratorio\persistence\repository\InventarioProductoRepository.class
@@ -19,6 +20,7 @@ com\laboratorio\persistence\model\Producto$ProductoBuilder.class
 com\laboratorio\persistence\repository\PlanoDetalleMaterialRepository.class
 com\laboratorio\service\implementation\ConstruccionService.class
 com\laboratorio\service\interfaces\IInventarioProductoService.class
+com\laboratorio\configuration\CorsConfig$1.class
 com\laboratorio\persistence\repository\MateriaPrimaRepository.class
 com\laboratorio\controller\PlanoController.class
 com\laboratorio\service\interfaces\IProductoService.class
